@@ -39,54 +39,46 @@
 
                     <div class="x_content" style="padding: 20px; text-align: center;  ">
                         
-                        <div class="animated flipInY col-lg-6 col-md-3 col-sm-6 col-xs-12">
+                        <!-- <div class="divider-dashed" style="padding: 40px;"></div> -->
+                        <?php 
+                            $query_pegawai=mysqli_query($conn,"SELECT *  FROM pegawai");
+                            $num_pegawai = mysqli_num_rows($query_pegawai);
+                            $query_nasabah=mysqli_query($conn,"SELECT *  FROM nasabah");
+                            $num_nasabah = mysqli_num_rows($query_nasabah);
+                        ?>
+
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="tile-stats">
                                 <div class="icon"></div>
-                                <h1>Rp. <?php echo rupiah($saldo_tabungan+$saldo_emoney);?></h1>
-                                <p>Jumlah Saldo Tabungan + Saldo E-money</p>               
-                            </div>              
+                                <h1><?php echo $num_nasabah;?></h1>
+                                <p>Data Santri</p>                           
+                            </div>        
                         </div>
 
-                        <div class="animated flipInY col-lg-6 col-md-3 col-sm-6 col-xs-12">
-                            <div class="text-success tile-stats">
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="tile-stats">
                                 <div class="icon"></div>
                                 <h1>Rp. <?php echo rupiah($saldo_tabungan);?></h1>
-                                <p>Jumlah Saldo Tabungan</p>               
-                            </div>              
+                                <p>Jumlah Saldo</p>                            
+                            </div>        
                         </div>
 
-                        <div class="animated flipInY col-lg-6 col-md-3 col-sm-6 col-xs-12">
-                            <div class="text-warning tile-stats">
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="tile-stats">
                                 <div class="icon"></div>
-                                <h1>Rp. <?php echo rupiah($saldo_emoney);?></h1>
-                                <p>Jumlah Saldo E-money</p>               
-                            </div>              
+                                <h1><?php echo $num_pegawai;?></h1>
+                                <p>Total Debit</p>         
+                            </div>
                         </div>
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="tile-stats">
+                                <div class="icon"></div>
+                                <h1><?php echo $num_pegawai;?></h1>
+                                <p>Total Kredit</p>         
+                            </div>
+                        </div>                        
 
                         <div class="animated flipInY col-lg-6 col-md-3 col-sm-6 col-xs-12">
-                            <div class="text-danger tile-stats">
-                                <h2>
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <td>Belum disetor ke kantin</td>
-                                        <td>Siap disetor ke kantin</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Rp. <?php echo rupiah($total_tr['total']);?></td>
-                                        <td>Rp. <?php echo rupiah($total_tr['bayar']);?></td>
-                                        <td>
-                                            <a data-toggle="modal" data-target="#editBayar" data-toggle="modal">
-                                                <button class="btn btn-xs btn-danger">
-                                                    <i class="ace-icon fa fa-edit bigger-120"></i>
-                                                </button>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </table>
-                                </h2>          
-                            </div>                         
-
                             <!-- Modal -->
                             <div class="modal fade" id="editBayar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -122,103 +114,9 @@
                                 </div>
                             </div> <!-- /modal -->                                          
                         </div>
-
-                        <div class="divider-dashed" style="padding: 40px;"></div>
-                            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                                <div class="tile-stats">
-                                    <?php 
-                                    $query_pegawai=mysqli_query($conn,"SELECT *  FROM pegawai");
-                                    $num_pegawai = mysqli_num_rows($query_pegawai);
-                                    $query_nasabah=mysqli_query($conn,"SELECT *  FROM nasabah");
-                                    $num_nasabah = mysqli_num_rows($query_nasabah);
-                                    ?>
-                                    <div class="icon"></div>
-                                    <h1><?php echo $num_pegawai;?></h1>
-                                    <p>Data Pegawai</p>         
-                                </div>
-                            </div>
-                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="tile-stats">
-                                <div class="icon"></div>
-                                <h1><?php echo $num_nasabah;?></h1>
-                                <p>Data Nasabah</p>                           
-                            </div>        
-                        </div>
-
+                        
                     </div>
                     <?php } ?>
-
-
-
-
-
-                    <?php                    
-                    if ($_SESSION['leveluser'] == 'kantin'){
-                    
-                    $query_tr=mysqli_query($conn,"SELECT * FROM transaksi_k_jml");
-                    $total_tr=mysqli_fetch_array($query_tr);
-
-                    ?>
-
-                    <div class="x_content" style="padding: 20px; text-align: center;  ">
-                        <div class="animated flipInY col-lg-6 col-md-3 col-sm-6 col-xs-12">
-                            <div class="text-danger tile-stats">
-                                <div class="icon"></div>
-                                <h2>Rp. <?php echo rupiah($total_tr['total']);?></h2>
-                                <p><h4>Total Transaksi</h4></p>
-                                <?php 
-                                $total = $total_tr['total'];
-                                $bayar = $total_tr['bayar'];
-                                $bayarRp = rupiah($total_tr['bayar']);
-                                if ($bayar > 0) {
-                                    echo "
-                                    <a class='btn btn-success btn-sm' data-toggle='modal' data-target='#terima' data-toggle='modal'>
-                                        <i class='fa fa-money'></i>
-                                        TERIMA UANG Rp. $bayarRp DARI TOTAL TRANSAKSI ?
-                                    </a>";} 
-                                ?>                                              
-                            </div>            
-                        </div>
-                    </div>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="terima" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title text-left" id="myModalLabel">Terima Uang</h4>
-                                </div>
-                                <div class="modal-body">          
-                                    <form action="?module=homeaksi&act=terima" class="form-horizontal form-label-left" method="POST">
-                                    <div class="form-group">
-                                        <label class="col-sm-7 control-label " for="form-field-1-1">Terima Uang <h1>Rp. <?php echo $bayarRp;?></h1></label>
-                                    </div> 
-                                    <input type="hidden" name="txtTotal" value="<?php echo $total;?>">
-                                    <input type="hidden" name="txtBayar" value="<?php echo $bayar;?>">
-                                    <div class="modal-footer">
-                                        <button class="btn btn-sm btn-primary" type="submit">
-                                            <i class="ace-icon fa fa-floppy-o bigger-120"></i>
-                                            Terima
-                                        </button>
-                                        <a href="./" class="btn btn-sm btn-danger">
-                                            <i class="ace-icon fa fa-times bigger-120"></i>
-                                            Batal
-                                        </a>
-                                        
-                                    </div>
-                                    </form>                      
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- /modal -->
-                    <?php } ?>
-                    
-
-
-
-
-
 
 
 
@@ -239,24 +137,11 @@
                     ?>
                     
                     <div class="x_content" style="padding: 20px; text-align: center;  ">
-                        <?php 
-                        while($tikett=mysqli_fetch_array($query_tiket)){
-                        ?>
-                        <div class="animated flipInY col-lg-6 col-md-3 col-sm-6 col-xs-12">
-                            <div class="text-danger tile-stats">
-                                <div class="icon"></div>
-                                <p><h4>Tiket </h4></p>
-                                <h2>Rp. <?php echo rupiah($tikett['jumlah_TF']);?></h2>
-                                <p><h4>Belum diTransfer </h4></p>             
-                            </div>              
-                        </div>
-                        <?php } ?>
-
                         <div class="animated flipInY col-lg-6 col-md-3 col-sm-6 col-xs-12">
                             <div class="tile-stats">
                                 <div class="icon"></div>
                                 <h1>Rp. <?php echo rupiah($saldo);?></h1>
-                                <p><h4>Saldo Keseluruhan </h4></p>               
+                                <p><h4>Total Saldo </h4></p>               
                             </div>              
                         </div>
 
@@ -264,7 +149,7 @@
                             <div class="tile-stats">
                                 <div class="icon"></div>
                                 <h1>Rp. <?php echo rupiah($saldo_kantin);?></h1>
-                                <p><h4>Saldo di Kantin </h4></p>               
+                                <p><h4>Total Transaksi </h4></p>               
                             </div>              
                         </div>                        
                     </div>
