@@ -1,0 +1,4 @@
+[30-Mar-2019 15:42:40 UTC] PHP Warning:  mysqli::mysqli(): (HY000/1045): Access denied for user 'dakusa'@'localhost' (using password: YES) in /home/dakusa/public_html/ubk/config/conn.php on line 6
+[30-Mar-2019 15:42:40 UTC] PHP Fatal error:  Koneksi ke database gagal: Access denied for user 'dakusa'@'localhost' (using password: YES) in /home/dakusa/public_html/ubk/config/conn.php on line 8
+[30-Mar-2019 15:46:30 UTC] PHP Warning:  mysqli::mysqli(): (HY000/1045): Access denied for user 'dakusa'@'localhost' (using password: YES) in /home/dakusa/public_html/ubk/config/conn.php on line 6
+[30-Mar-2019 15:46:30 UTC] PHP Fatal error:  Koneksi ke database gagal: Access denied for user 'dakusa'@'localhost' (using password: YES) in /home/dakusa/public_html/ubk/config/conn.php on line 8

@@ -1,0 +1,3 @@
+[07-Aug-2018 09:54:10 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/ubkmart/tabungan.ubkmart.com/ceksaldo/index.php:3) in /home/ubkmart/tabungan.ubkmart.com/ceksaldo/index.php on line 50
+[30-Mar-2019 15:43:59 UTC] PHP Warning:  mysqli::mysqli(): (HY000/1045): Access denied for user 'dakusa'@'localhost' (using password: YES) in /home/dakusa/public_html/ubk/config/conn.php on line 6
+[30-Mar-2019 15:43:59 UTC] PHP Fatal error:  Koneksi ke database gagal: Access denied for user 'dakusa'@'localhost' (using password: YES) in /home/dakusa/public_html/ubk/config/conn.php on line 8
